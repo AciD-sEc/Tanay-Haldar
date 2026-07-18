@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+  http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- ✅ HOMEPAGE — Highest Priority -->
+  <url>
+    <loc>https://acid-sec.github.io/Tanay-Haldar/</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- ✅ ABOUT — Tanay Haldar bio, education, location -->
+  <url>
+    <loc>https://acid-sec.github.io/Tanay-Haldar/#about</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- ✅ SKILLS — Unity, Python, AI, Android, Security -->
+  <url>
+    <loc>https://acid-sec.github.io/Tanay-Haldar/#skills</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ✅ PROJECTS — Carrom King Classic, AI Podcast Clipper, etc. -->
+  <url>
+    <loc>https://acid-sec.github.io/Tanay-Haldar/#projects</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- ✅ EXPERIENCE — Quantum Core co-founder, freelance dev -->
+  <url>
+    <loc>https://acid-sec.github.io/Tanay-Haldar/#experience</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ✅ CERTIFICATIONS — Google Gemini, Tata Forage, HP LIFE -->
+  <url>
+    <loc>https://acid-sec.github.io/Tanay-Haldar/#certifications</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ✅ QUANTUM CORE — Company section -->
+  <url>
+    <loc>https://acid-sec.github.io/Tanay-Haldar/#quantum-core</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ✅ CONTACT — Email, social links -->
+  <url>
+    <loc>https://acid-sec.github.io/Tanay-Haldar/#contact</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

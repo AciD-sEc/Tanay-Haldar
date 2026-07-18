@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Block sitemap XSL from indexing (it's just a stylesheet)
+Disallow: /sitemap.xsl
+
+# Sitemap location — submit this URL to Google Search Console
+Sitemap: https://acid-sec.github.io/Tanay-Haldar/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Specific bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
