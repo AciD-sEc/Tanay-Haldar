@@ -204,6 +204,139 @@
   });
 })();
 
+
+// ===== PROGRESS BAR ANIMATION =====
+(function () {
+  const fills = document.querySelectorAll('.comp-bar-fill');
+  if (!fills.length) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fill = entry.target;
+        fill.style.width = fill.getAttribute('data-width');
+        observer.unobserve(fill);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  fills.forEach(fill => observer.observe(fill));
+})();
+
+// ===== GALLERY FILTERING =====
+(function () {
+  const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+  const items = document.querySelectorAll('.gallery-item');
+  if (!filterBtns.length || !items.length) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+      items.forEach(item => {
+        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+          item.style.display = 'block';
+          setTimeout(() => { 
+            item.style.opacity = '1'; 
+            item.style.transform = 'scale(1)'; 
+          }, 10);
+        } else {
+          item.style.opacity = '0';
+          item.style.transform = 'scale(0.8)';
+          setTimeout(() => { 
+            item.style.display = 'none'; 
+          }, 300);
+        }
+      });
+    });
+  });
+})();
+
+// ===== LIGHTBOX MODAL FUNCTIONALITY =====
+(function () {
+  const modal = document.getElementById('lightboxModal');
+  const img = document.getElementById('lightboxImg');
+  const caption = document.getElementById('lightboxCaption');
+  const closeBtn = document.getElementById('lightboxClose');
+  const prevBtn = document.getElementById('lightboxPrev');
+  const nextBtn = document.getElementById('lightboxNext');
+  const items = document.querySelectorAll('.gallery-item');
+
+  if (!modal || !img || !caption || !closeBtn || !items.length) return;
+
+  let currentIndex = 0;
+  let visibleItems = [];
+
+  function updateLightbox(index) {
+    if (index < 0 || index >= visibleItems.length) return;
+    currentIndex = index;
+    const targetItem = visibleItems[index];
+    img.src = targetItem.getAttribute('data-src');
+    const textOverlay = targetItem.querySelector('.gallery-item-overlay span');
+    caption.textContent = textOverlay ? textOverlay.textContent : '';
+  }
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const activeFilterBtn = document.querySelector('.gallery-filter-btn.active');
+      const filter = activeFilterBtn ? activeFilterBtn.getAttribute('data-filter') : 'all';
+      
+      visibleItems = Array.from(items).filter(el => {
+        return filter === 'all' || el.getAttribute('data-category') === filter;
+      });
+
+      currentIndex = visibleItems.indexOf(item);
+      updateLightbox(currentIndex);
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+  });
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      let prev = currentIndex - 1;
+      if (prev < 0) prev = visibleItems.length - 1;
+      updateLightbox(prev);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      let next = currentIndex + 1;
+      if (next >= visibleItems.length) next = 0;
+      updateLightbox(next);
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (!modal.classList.contains('show')) return;
+    if (e.key === 'Escape') {
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+    } else if (e.key === 'ArrowLeft' && prevBtn) {
+      prevBtn.click();
+    } else if (e.key === 'ArrowRight' && nextBtn) {
+      nextBtn.click();
+    }
+  });
+})();
+
 // ===== STRUCTURED DATA VERIFICATION (DEV HELPER) =====
 (function () {
   if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
